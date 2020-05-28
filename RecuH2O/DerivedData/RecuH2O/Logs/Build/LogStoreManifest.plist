@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>1FCBC1C8-87D9-4F05-B61C-D20249ADE7F4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>1FCBC1C8-87D9-4F05-B61C-D20249ADE7F4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>RecuH2O project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>RecuH2O</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Preview RecuH2O</string>
+			<key>timeStartedRecording</key>
+			<real>612365304.84307694</real>
+			<key>timeStoppedRecording</key>
+			<real>612365308.22005296</real>
+			<key>title</key>
+			<string>Preview RecuH2O</string>
+			<key>uniqueIdentifier</key>
+			<string>1FCBC1C8-87D9-4F05-B61C-D20249ADE7F4</string>
+		</dict>
+		<key>A2072B72-27CC-41DE-B287-D2B58F677335</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A2072B72-27CC-41DE-B287-D2B58F677335.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>RecuH2O project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>RecuH2O</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Preview RecuH2O</string>
+			<key>timeStartedRecording</key>
+			<real>612365326.26229405</real>
+			<key>timeStoppedRecording</key>
+			<real>612365326.57400501</real>
+			<key>title</key>
+			<string>Preview RecuH2O</string>
+			<key>uniqueIdentifier</key>
+			<string>A2072B72-27CC-41DE-B287-D2B58F677335</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
