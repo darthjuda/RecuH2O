@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B1B92786247FF3C500EDF662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B92785247FF3C500EDF662 /* AppDelegate.swift */; };
+		B1B92788247FF3C500EDF662 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B92787247FF3C500EDF662 /* SceneDelegate.swift */; };
+		B1B9278A247FF3C500EDF662 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B92789247FF3C500EDF662 /* ContentView.swift */; };
+		B1B9278C247FF3C700EDF662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1B9278B247FF3C700EDF662 /* Assets.xcassets */; };
+		B1B9278F247FF3C700EDF662 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1B9278E247FF3C700EDF662 /* Preview Assets.xcassets */; };
+		B1B92792247FF3C700EDF662 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B92790247FF3C700EDF662 /* LaunchScreen.storyboard */; };
+		B1B9279D247FF3C700EDF662 /* RecuH2OTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B9279C247FF3C700EDF662 /* RecuH2OTests.swift */; };
+		B1B927A8247FF3C700EDF662 /* RecuH2OUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B927A7247FF3C700EDF662 /* RecuH2OUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B1B92799247FF3C700EDF662 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B9277A247FF3C500EDF662 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1B92781247FF3C500EDF662;
+			remoteInfo = RecuH2O;
+		};
+		B1B927A4247FF3C700EDF662 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B9277A247FF3C500EDF662 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1B92781247FF3C500EDF662;
+			remoteInfo = RecuH2O;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B1B92782247FF3C500EDF662 /* RecuH2O.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecuH2O.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1B92785247FF3C500EDF662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B1B92787247FF3C500EDF662 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B1B92789247FF3C500EDF662 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B1B9278B247FF3C700EDF662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1B9278E247FF3C700EDF662 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B1B92791247FF3C700EDF662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B1B92793247FF3C700EDF662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1B92798247FF3C700EDF662 /* RecuH2OTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecuH2OTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1B9279C247FF3C700EDF662 /* RecuH2OTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuH2OTests.swift; sourceTree = "<group>"; };
+		B1B9279E247FF3C700EDF662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1B927A3247FF3C700EDF662 /* RecuH2OUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecuH2OUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1B927A7247FF3C700EDF662 /* RecuH2OUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuH2OUITests.swift; sourceTree = "<group>"; };
+		B1B927A9247FF3C700EDF662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1B9277F247FF3C500EDF662 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B92795247FF3C700EDF662 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B927A0247FF3C700EDF662 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1B92779247FF3C500EDF662 = {
+			isa = PBXGroup;
+			children = (
+				B1B92784247FF3C500EDF662 /* RecuH2O */,
+				B1B9279B247FF3C700EDF662 /* RecuH2OTests */,
+				B1B927A6247FF3C700EDF662 /* RecuH2OUITests */,
+				B1B92783247FF3C500EDF662 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B1B92783247FF3C500EDF662 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1B92782247FF3C500EDF662 /* RecuH2O.app */,
+				B1B92798247FF3C700EDF662 /* RecuH2OTests.xctest */,
+				B1B927A3247FF3C700EDF662 /* RecuH2OUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1B92784247FF3C500EDF662 /* RecuH2O */ = {
+			isa = PBXGroup;
+			children = (
+				B1B92785247FF3C500EDF662 /* AppDelegate.swift */,
+				B1B92787247FF3C500EDF662 /* SceneDelegate.swift */,
+				B1B92789247FF3C500EDF662 /* ContentView.swift */,
+				B1B9278B247FF3C700EDF662 /* Assets.xcassets */,
+				B1B92790247FF3C700EDF662 /* LaunchScreen.storyboard */,
+				B1B92793247FF3C700EDF662 /* Info.plist */,
+				B1B9278D247FF3C700EDF662 /* Preview Content */,
+			);
+			path = RecuH2O;
+			sourceTree = "<group>";
+		};
+		B1B9278D247FF3C700EDF662 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B1B9278E247FF3C700EDF662 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B1B9279B247FF3C700EDF662 /* RecuH2OTests */ = {
+			isa = PBXGroup;
+			children = (
+				B1B9279C247FF3C700EDF662 /* RecuH2OTests.swift */,
+				B1B9279E247FF3C700EDF662 /* Info.plist */,
+			);
+			path = RecuH2OTests;
+			sourceTree = "<group>";
+		};
+		B1B927A6247FF3C700EDF662 /* RecuH2OUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B1B927A7247FF3C700EDF662 /* RecuH2OUITests.swift */,
+				B1B927A9247FF3C700EDF662 /* Info.plist */,
+			);
+			path = RecuH2OUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1B92781247FF3C500EDF662 /* RecuH2O */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1B927AC247FF3C700EDF662 /* Build configuration list for PBXNativeTarget "RecuH2O" */;
+			buildPhases = (
+				B1B9277E247FF3C500EDF662 /* Sources */,
+				B1B9277F247FF3C500EDF662 /* Frameworks */,
+				B1B92780247FF3C500EDF662 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecuH2O;
+			productName = RecuH2O;
+			productReference = B1B92782247FF3C500EDF662 /* RecuH2O.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B1B92797247FF3C700EDF662 /* RecuH2OTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1B927AF247FF3C700EDF662 /* Build configuration list for PBXNativeTarget "RecuH2OTests" */;
+			buildPhases = (
+				B1B92794247FF3C700EDF662 /* Sources */,
+				B1B92795247FF3C700EDF662 /* Frameworks */,
+				B1B92796247FF3C700EDF662 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1B9279A247FF3C700EDF662 /* PBXTargetDependency */,
+			);
+			name = RecuH2OTests;
+			productName = RecuH2OTests;
+			productReference = B1B92798247FF3C700EDF662 /* RecuH2OTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B1B927A2247FF3C700EDF662 /* RecuH2OUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1B927B2247FF3C700EDF662 /* Build configuration list for PBXNativeTarget "RecuH2OUITests" */;
+			buildPhases = (
+				B1B9279F247FF3C700EDF662 /* Sources */,
+				B1B927A0247FF3C700EDF662 /* Frameworks */,
+				B1B927A1247FF3C700EDF662 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1B927A5247FF3C700EDF662 /* PBXTargetDependency */,
+			);
+			name = RecuH2OUITests;
+			productName = RecuH2OUITests;
+			productReference = B1B927A3247FF3C700EDF662 /* RecuH2OUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1B9277A247FF3C500EDF662 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "mehdi jung";
+				TargetAttributes = {
+					B1B92781247FF3C500EDF662 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					B1B92797247FF3C700EDF662 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = B1B92781247FF3C500EDF662;
+					};
+					B1B927A2247FF3C700EDF662 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = B1B92781247FF3C500EDF662;
+					};
+				};
+			};
+			buildConfigurationList = B1B9277D247FF3C500EDF662 /* Build configuration list for PBXProject "RecuH2O" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B1B92779247FF3C500EDF662;
+			productRefGroup = B1B92783247FF3C500EDF662 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1B92781247FF3C500EDF662 /* RecuH2O */,
+				B1B92797247FF3C700EDF662 /* RecuH2OTests */,
+				B1B927A2247FF3C700EDF662 /* RecuH2OUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B1B92780247FF3C500EDF662 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1B92792247FF3C700EDF662 /* LaunchScreen.storyboard in Resources */,
+				B1B9278F247FF3C700EDF662 /* Preview Assets.xcassets in Resources */,
+				B1B9278C247FF3C700EDF662 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B92796247FF3C700EDF662 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B927A1247FF3C700EDF662 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1B9277E247FF3C500EDF662 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1B92786247FF3C500EDF662 /* AppDelegate.swift in Sources */,
+				B1B92788247FF3C500EDF662 /* SceneDelegate.swift in Sources */,
+				B1B9278A247FF3C500EDF662 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B92794247FF3C700EDF662 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1B9279D247FF3C700EDF662 /* RecuH2OTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B9279F247FF3C700EDF662 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1B927A8247FF3C700EDF662 /* RecuH2OUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1B9279A247FF3C700EDF662 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1B92781247FF3C500EDF662 /* RecuH2O */;
+			targetProxy = B1B92799247FF3C700EDF662 /* PBXContainerItemProxy */;
+		};
+		B1B927A5247FF3C700EDF662 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1B92781247FF3C500EDF662 /* RecuH2O */;
+			targetProxy = B1B927A4247FF3C700EDF662 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B1B92790247FF3C700EDF662 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1B92791247FF3C700EDF662 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B1B927AA247FF3C700EDF662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B1B927AB247FF3C700EDF662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B1B927AD247FF3C700EDF662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"RecuH2O/Preview Content\"";
+				DEVELOPMENT_TEAM = 5HSE669X65;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = RecuH2O/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.darthjuda.RecuH2O;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1B927AE247FF3C700EDF662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"RecuH2O/Preview Content\"";
+				DEVELOPMENT_TEAM = 5HSE669X65;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = RecuH2O/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.darthjuda.RecuH2O;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B1B927B0247FF3C700EDF662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5HSE669X65;
+				INFOPLIST_FILE = RecuH2OTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.darthjuda.RecuH2OTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecuH2O.app/RecuH2O";
+			};
+			name = Debug;
+		};
+		B1B927B1247FF3C700EDF662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5HSE669X65;
+				INFOPLIST_FILE = RecuH2OTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.darthjuda.RecuH2OTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecuH2O.app/RecuH2O";
+			};
+			name = Release;
+		};
+		B1B927B3247FF3C700EDF662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5HSE669X65;
+				INFOPLIST_FILE = RecuH2OUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.darthjuda.RecuH2OUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RecuH2O;
+			};
+			name = Debug;
+		};
+		B1B927B4247FF3C700EDF662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5HSE669X65;
+				INFOPLIST_FILE = RecuH2OUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.darthjuda.RecuH2OUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RecuH2O;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1B9277D247FF3C500EDF662 /* Build configuration list for PBXProject "RecuH2O" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1B927AA247FF3C700EDF662 /* Debug */,
+				B1B927AB247FF3C700EDF662 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1B927AC247FF3C700EDF662 /* Build configuration list for PBXNativeTarget "RecuH2O" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1B927AD247FF3C700EDF662 /* Debug */,
+				B1B927AE247FF3C700EDF662 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1B927AF247FF3C700EDF662 /* Build configuration list for PBXNativeTarget "RecuH2OTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1B927B0247FF3C700EDF662 /* Debug */,
+				B1B927B1247FF3C700EDF662 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1B927B2247FF3C700EDF662 /* Build configuration list for PBXNativeTarget "RecuH2OUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1B927B3247FF3C700EDF662 /* Debug */,
+				B1B927B4247FF3C700EDF662 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1B9277A247FF3C500EDF662 /* Project object */;
+}
