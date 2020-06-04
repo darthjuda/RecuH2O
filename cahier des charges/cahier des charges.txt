@@ -1,0 +1,7 @@
+présentation:
+
+cahier des charges:
+-notre produit doit pouvoir afficher le niveau de l'eau dans l'application et sur le graphbar
+-notre produit doit pouvoir ouvrir ou fermer la trappe en fonction du seuil du niveau de l'eau (seuil haut et seuil bas) 
+-notre produit doit pouvoir se connecter au wifi
+-l'utilisateur doit pouvoir ouvrir et fermer la trappe à l'aide de l'application
