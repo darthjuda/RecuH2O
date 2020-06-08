@@ -1,4 +1,11 @@
-présentation:
+présentation: Notre produit, RecuH2O, permet de dévier l'eau de la gouttière vers un récipient. Pour cela, on installe un
+système de clapet qui permet à l'eau de couler soit dans la gouttière, soit dans une gouttière qui amène l'eau dans le 
+récipient. pour cela, on met en place une condition. lorsque l'eau est en dessous du niveau définit comme le seuil maximal,
+le clapet ferme la gouttière principale et dévie l'eau dans le récipient. Si le niveau de l'eau est égal ou au dessus du 
+seuil maximal, le clapet ferme la gouttière secondaire et ouvre l'accès à la gouttière principale. Notre produit permet 
+également à l'utilisateur de visualiser le niveau de l'eau à l'aide d'un graphbar. On créera une application qui permettra
+à l'utilisateur de visualiser sur son téléphone le niveau de l'eau. L'utilisateur pourra aussi ouvrir ou fermer le clapet 
+grâce à l'application.
 
 cahier des charges:
 -notre produit doit pouvoir afficher le niveau de l'eau dans l'application et sur le graphbar
