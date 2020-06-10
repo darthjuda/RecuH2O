@@ -277,12 +277,20 @@ VCC
 $Comp
 L Amplifier_Operational:TL082 U?
 U 3 1 5EE26502
-P 1800 3250
-F 0 "U?" H 1758 3296 50  0000 L CNN
-F 1 "TL082" H 1758 3205 50  0000 L CNN
-F 2 "" H 1800 3250 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tl081.pdf" H 1800 3250 50  0001 C CNN
-	3    1800 3250
+P 1500 3150
+F 0 "U?" H 1400 3650 50  0000 L CNN
+F 1 "TL082" H 1350 3550 50  0000 L CNN
+F 2 "" H 1500 3150 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tl081.pdf" H 1500 3150 50  0001 C CNN
+	3    1500 3150
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	2550 4150 2400 4150
+Wire Wire Line
+	4050 2600 3900 2600
+Text Label 2400 4150 0    50   ~ 0
+SCL
+Text Label 3900 2600 0    50   ~ 0
+SCL
 $EndSCHEMATC
