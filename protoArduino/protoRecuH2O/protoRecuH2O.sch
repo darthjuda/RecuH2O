@@ -303,10 +303,12 @@ Text Label 1400 2700 0    50   ~ 0
 sonde
 Wire Wire Line
 	4050 2600 3550 2600
-Wire Wire Line
-	2550 3350 2400 3350
 Text Label 3550 2600 0    50   ~ 0
 recupdonnee
-Text Label 2400 3350 0    50   ~ 0
+Text Label 2100 3550 0    50   ~ 0
 recupdonee
+Wire Wire Line
+	2550 3350 2100 3350
+Wire Wire Line
+	2550 3550 2100 3550
 $EndSCHEMATC

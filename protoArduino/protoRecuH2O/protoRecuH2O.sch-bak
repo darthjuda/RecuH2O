@@ -286,11 +286,27 @@ F 3 "http://www.ti.com/lit/ds/symlink/tl081.pdf" H 1500 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2550 4150 2400 4150
+	3150 4450 3150 4700
+Text Label 3150 4700 0    50   ~ 0
+GND2
 Wire Wire Line
-	4050 2600 3900 2600
-Text Label 2400 4150 0    50   ~ 0
-SCL
-Text Label 3900 2600 0    50   ~ 0
-SCL
+	1400 3450 1400 3600
+Text Label 1400 3600 0    50   ~ 0
+GND2
+Wire Wire Line
+	3550 2950 3700 2950
+Wire Wire Line
+	1400 2850 1400 2700
+Text Label 3700 2950 0    50   ~ 0
+sonde
+Text Label 1400 2700 0    50   ~ 0
+sonde
+Wire Wire Line
+	4050 2600 3550 2600
+Wire Wire Line
+	2550 3650 2100 3650
+Text Label 3550 2600 0    50   ~ 0
+recupdonnee
+Text Label 2100 3650 0    50   ~ 0
+recupdonee
 $EndSCHEMATC

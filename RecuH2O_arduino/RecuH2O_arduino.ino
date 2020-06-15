@@ -2,18 +2,24 @@
 // import librairie niveaudeau
 // import librairie wifi-shield
 
-int graphbar = 5;
-int motor = 6;
+int motor = 11;
+const float sonde = A0;
+const int ledCount = 10 ;
+
+int ledPins[] = {
+  19, 20, 21, 22, 23, 24, 25, 26, 27, 28
+};
 
 //définir les différents niveaux:
 float niveaudeau;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(graphbar, OUTPUT);
+  pinMode(sonde, INPUT);
   pinMode(motor, OUTPUT);
-
-  
+  for (int thisLed = 0; thisLed < ledCount; thisLed++){
+    pinMode(ledPins[thisLed], OUTPUT);
+  }
 }
 
 /* lire entree sur analog pin 0:
