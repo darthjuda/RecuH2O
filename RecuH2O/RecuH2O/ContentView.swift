@@ -13,11 +13,11 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection){
-            Text("Vue 1: control")
+            Text("RecuH2O")
                 .font(.title)
                 .tabItem {
                     VStack {
-                        Image("first")
+                        Image(systemName: "gamecontroller")
                         Text("Control")
                     }
                 }
@@ -26,7 +26,7 @@ struct ContentView: View {
                 .font(.title)
                 .tabItem {
                     VStack {
-                        Image("second")
+                        Image(systemName: "slider.horizontal.3")
                         Text("Réglages")
                     }
                 }
