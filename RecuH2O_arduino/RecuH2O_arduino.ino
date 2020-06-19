@@ -3,69 +3,56 @@
 // import librairie wifi-shield
 #include <Servo.h>
 
-int tc = 0;
 
-// module sonde 
+// variables globales
+unsigned long tc = 0;
+int lvl = 0;
+bool tcIsOn = false;
+const int r = 220000;
+float cu;
+
+
+// module sonde
 int alimSonde = 2; //l'alimentation de la sonde est définie sur le pin 2
 int sonde = A0; //La sonde est définie sur le pin A0
 
 // module moteur
-int motor = 11; // Le moteur est défini sur le pin 11
+Servo motor;
 int pos = 0;
-Servo myservo;
 
-// module graphbar 
+
+// module graphbar
 const int ledCount = 10 ; // permet de dire que le graphbar possede 10 leds
 int ledPins[] = {
   19, 20, 21, 22, 23, 24, 25, 26, 27, 28 // Les leds sont définies sur les pins 19, 20, 21, 22, 23, 24, 25, 26, 27 et 28
 };
 
 //définir les différents niveaux:
-float niveaudeau;
+
 
 void setup() {
   // put your setup code here, to run once:
   pinMode(sonde, INPUT); // La sonde est définie en entrée
-  pinMode(motor, OUTPUT); // Le moteur est défini en sortie
-  for (int thisLed = 0; thisLed < ledCount; thisLed++){ // permet de sélectionner chaque led une a une 
+  motor.attach(11);
+  for (int thisLed = 0; thisLed < ledCount; thisLed++) { // permet de sélectionner chaque led une a une
     pinMode(ledPins[thisLed], OUTPUT); // on définie la led sélectionner comme une sortie
   }
-   Serial.begin(9600);
+  Serial.begin(9600);
 }
-
-/* lire entree sur analog pin 0:
-  int sensorValue = analogRead(A0);
-  // conversion lecture analogique (qui va par exemple de 0 - 1023) en un voltage (0 - 5V):
-  float voltage = sensorValue * (5.0 / 1023.0);
-  // imprimer la valeur en console:
-  Serial.println(voltage);
-*/
 
 void loop() {
-  // put your main code here, to run repeatedly:
- 
-
-  }
+  
 }
 
-void tempsCharge() {
-  // si A0<648
-  // 
-}
-
-void donneeSonde() {
-  // surveille Tc
-}
-
-void onOffMoteur() { 
+void onOffMoteur() {
   if (lvl <= 100) {
-    for( pos = 0 ; pos <= 90 ; pos ++ 1) {
-      myservo.write(pos);
+    for ( pos = 0 ; pos <= 90 ; pos++) {
+      motor.write(pos);
     }
   }
-  else (lvl > 100) {
-    for( pos = 90 ; pos >= 0 ; pos -- 1) {
-      myservo.write(pos);
+  else {
+    for ( pos = 90 ; pos >= 0 ; pos--) {
+      motor.write(pos);
     }
   }
 }
@@ -84,17 +71,38 @@ void turnOnTurnOfGraphbar() {
 }
 
 int recupTc() {
-  startTimer(tc) // on démarre le timer
-  SerialPrintln("demarrage timer"); // on écrit sur l'écran "demarrage timer"
-  do //tant que la condition est valable 
-    int val = analogRead(sonde); // on stock la donnée lue sur le pin A0 dans val
-    digitalWrite(alimSonde, HIGH); // on alimente la sonde 
-    SerialPrintln("+5V sonde"); // on écrit sur l'écran "+5V sonde"
-  while (val <= 648);
-  stopTimer(tc); //on stop le timer
-  SerialPrintln("stop timer"); // on écrit sur l'écran "stop timer"
-  digitalWrite(alimSonde, LOW); // on arrete l'alimentation de la sonde 
-  SerialPrintln("0V sonde"); // on écrit sur l'écran "0V sonde"
-  SerialPrintln(tc) // on écrit la valeur de Tc
-  return tc
+  // on démarre le timer et on allume la sonde
+  tcIsOn = true;
+  startTimer();
+  Serial.print("demarrage timer"); // on écrit sur l'écran "demarrage timer"
+  digitalWrite(alimSonde, HIGH);
+  Serial.print("allumage sonde");
+
+  // lecture de sonde jusqu'a sonde == 648
+  int val = 0;
+  do {
+   val = analogRead(sonde);
+   Serial.print(val);
+   
+  } while (val <= 648);
+
+  //on stop le timer et on eteint la sonde
+  tcIsOn = false;
+  startTimer();
+  Serial.print("stop timer"); // on écrit sur l'écran "stop timer"
+  digitalWrite(alimSonde, LOW); // on arrete l'alimentation de la sonde
+  Serial.print("extinction sonde"); // on écrit sur l'écran "0V sonde"
+  Serial.print(tc); // on écrit la valeur de Tc
+
+  return tc;
+}
+
+unsigned long startTimer() {
+  if (tcIsOn) {
+    tc = millis();
+  }
+  else {
+    Serial.print(tc);
+    return tc;
+  }
 }
