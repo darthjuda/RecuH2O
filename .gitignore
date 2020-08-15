@@ -1,3 +1,5 @@
+.gitignore
+
 ### Kotlin ###
 # Compiled class file
 *.class
@@ -60,3 +62,6 @@ RecuH2O/DerivedData/
 
 ### Env & Secrets ###
 .env
+
+### Mac OsX ###
+.DS_STORE
