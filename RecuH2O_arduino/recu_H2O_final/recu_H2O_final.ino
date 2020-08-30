@@ -18,16 +18,28 @@ Servo motor;
 String header;
 String adressIP;
 
-// variables auxiliaires pour stocker l'état des sorties
-String motorState = "off";
-int niveauCuveState = niveauCuve
-String sondeState = "off";
+////////////////////////////// graphBar //////////////////////////////////////////////////////////
 
-// assigner des variables en sorties aux pins GPIO
-const int motor.attach = 46;
-const int ledPins = {
+//permet de dire que le graphbar possede 10 led
+const int ledCount = 8;
+
+// les leds sont definies sur les pins ci dessous:
+const int ledPins[] = {
   14, 15, 16, 17, 18, 19, 20, 21
 };
+
+
+////////////////////////////// niveau /////////////////////////////////////////////////////////////
+
+int niveauCuve = 7;
+bool isOpen;
+const int maxLvl = ledCount;
+
+// variables auxiliaires pour stocker l'état des sorties
+String motorState = "off";
+String niveauCuveState = (String) niveauCuve;
+String sondeState = "off";
+
 
 const int sonde = 0;
 
@@ -39,21 +51,6 @@ unsigned long previousTime = 0;
 
 // on definit timeoutTime en millisecondes
 const long timeoutTime = 2000;
-////////////////////////////// graphBar //////////////////////////////////////////////////////////
-
-//permet de dire que le graphbar possede 10 led
-const int ledCount = 8;
-
-// les leds sont definies sur les pins ci dessous:
-int ledPins[] = {
-  14, 15, 16, 17, 18, 19, 20, 21
-};
-
-////////////////////////////// niveau /////////////////////////////////////////////////////////////
-
-int niveauCuve = 8;
-bool isOpen;
-const int maxLvl = ledCount;
 
 ////////////////////////////// mesure capacité ////////////////////////////////////////////////////
 
@@ -72,14 +69,22 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
+  // attache le servo motor au gpio 4
+  motor.attach(4);
+
   //initialiser les variables en sorties
   pinMode(46, OUTPUT);
-  pinMode(ledPins, OUTPUT);
+  for(int i=0;i<=ledCount;i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
   pinMode(sonde, OUTPUT);
 
   // on met les sorties en LOW
   digitalWrite(46, LOW);
-  digitalWrite(ledPins, LOW);
+  for(int i=0;i<=ledCount;i++) {
+    digitalWrite(ledPins[i], LOW);  
+  }
+  
   digitalWrite(sonde, LOW);
 
   // connexion au réseau Wi-Fi avec le SSID et le mot de passe
@@ -87,7 +92,7 @@ void setup() {
   Serial.println(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED){
-    deay(500);
+    delay(500);
     Serial.print(".");
   }
 
@@ -95,8 +100,7 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connecté.");
   Serial.println("Adresse IP: ");
-  adressIP = WiFi.localIP();
-  Serial.println(adressIP);
+  Serial.println(WiFi.localIP());
   server.begin();
 
 ////////////////////////////// graphBar //////////////////////////////////////////////////////////
@@ -133,7 +137,7 @@ void loop() {
         if (c== '\n'){ //  si le bit est une nouvelle ligne de caractere
           // si la ligne courante est vide, on a 2 caractere de retour a la ligne un a cote de l'autre
           // c'est la fin de la requete HTTP du client, on envoi la reponse:
-          if (CurrentLine.length() == 0 {
+          if (currentLine.length() == 0) {
             // les en-tetes HTTP commencent toujours avec un code reponse (ex: HTTP/1.1 200 OK)
             // et un type de contenue comme ca le client sait quelle type de donnée arrive
             client.println("HTTP/1.1 200 OK");
@@ -152,60 +156,87 @@ void loop() {
             client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
             client.println(".button { background-color: #0394fc; border: 2px solid black; border-radius: 5px; color: black; padding: 16px 40px;");
             client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-            client.println(".button2 {background-color: #77878A;}");
-            client.println(".buttonCuveVert {background-color: #12c412; border: 2px solid black; border-radius: 5px; color: black;");
-            client.println(".buttonCuveOrange {background-color: #ff7b00; border: 2px solid black; border-radius: 5px; color: black;");
-            client.println(".buttonCuveRouge {background-color: #ff0000; border: 2px solid black; border-radius: 5px; color: black;</style></head>");
+            client.println(".button2 { background-color: #77878A;}");
+            client.println(".buttonCuveVert { background-color: #12c412; border: 2px solid black; border-radius: 5px; color: black;}");
+            client.println(".buttonCuveOrange { background-color: #ff7b00; border: 2px solid black; border-radius: 5px; color: black;}");
+            client.println(".buttonCuveRouge { background-color: #ff0000; border: 2px solid black; border-radius: 5px; color: black;}</style></head>");
 
             // En tete page web 
             client.println("<body><h1> Recu H20 </h1>");
 
             // Affichage des variables d'etats 
-            /*
-             * // variables auxiliaires pour stocker l'état des sorties
-                  String motorState = "off";
-                  String ledPinsState = "off";
-                  String sondeState = "off";
-            */
+            
             // Etat moteur
             client.println("<p>Etat du clapet: " + motorState + "</p>");
             // si etat clapet(moteur) = off affiché on sur le bouton
             if (motorState=="off") {
-              client.println("<p><a href=\"addresse CONTROL PIN MOTOR"><button class=\"button\">ON</button></a></p>");
+              //client.println("<p><a href=\"/addresseCONTROLPINMOTOR"><button class=\"button\">ON</button></a></p>");
+              client.println("<p><a href=\"/5/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"addresse CONTROL PIN MOTOR"><button class=\"button button2\">OFF</button></a></p>");
+              //client.println("<p><a href=\"addresse CONTROL PIN MOTOR"><button class="button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/5/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
 
             // Etat led 
             client.println("<p>Etat du niveau de la cuve: " + niveauCuveState + "</p>");
-            // TODO: if niveau cuve 1<lvl<4 button vert ...
+
+            switch (niveauCuve) {
+              case 0 ...3:
+                client.println("<p><button class=\"button buttonCuveVert\"></button></p>");
+              break;
+
+              case 4 ...6:
+                client.println("<p><button class=\"button buttonCuveOrange\"></button></p>");
+              break;
+
+              case 7 ...8:
+                client.println("<p><button class=\"button buttonCuveRouge\"></button></p>");
+              break;
+
+              default: 
+                client.println("<p>Probleme avec la variable du niveau de la cuve</p>");
+            }
               
             // Etat sonde
-
+              // TODO: afficher l'etat de la sonde en web
             
+            client.println("</body></html>");
+            // fin de la reponse http 
+            client.println();
+            break;
             
+          } else { // Si reception d'une nouvelle ligne reset currentLine
+            currentLine = "";
           }
+        } else if (c != '\r') {  // if you got anything else but a carriage return character,
+            currentLine += c;      // add it to the end of the currentLine
         }
       }
     }
-    }
+    // Clear the header variable
+    header = "";
+    // Close the connection
+    client.stop();
+    Serial.println("Client déconnecté.");
+    Serial.println("");
 
-  switch (niveauCuve) {
-    case 0 ...9:
-      openGate();
-      Serial.println(isOpen);
-      break;
-
-    case maxLvl:
-      closeGate();
-      Serial.println(isOpen);
-      break;
+//  switch (niveauCuve) {
+//    case 0 ...7:
+//      openGate();s
+//      Serial.println(isOpen);
+//      break;
+//
+//    case maxLvl:
+//      closeGate();
+//      Serial.println(isOpen);
+//      break;
+//  }
+//
+//  graphBarDisplay(niveauCuve);
+//
+//  mesureCapSonde();
+//  Serial.println(mesureSonde);
   }
-
-  graphBarDisplay(niveauCuve);
-
-  mesureCapSonde();
-  Serial.println(mesureSonde);
 }
 
 void openGate() {
