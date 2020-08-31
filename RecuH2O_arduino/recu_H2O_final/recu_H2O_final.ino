@@ -24,7 +24,7 @@ int niveauCuveState = niveauCuve
 String sondeState = "off";
 
 // assigner des variables en sorties aux pins GPIO
-const int motor.attach = 46;
+motor.attach(4);
 const int ledPins = {
   14, 15, 16, 17, 18, 19, 20, 21
 };
@@ -178,8 +178,24 @@ void loop() {
 
             // Etat led 
             client.println("<p>Etat du niveau de la cuve: " + niveauCuveState + "</p>");
-            // TODO: if niveau cuve 1<lvl<4 button vert ...
-              
+
+           // le switch permet d'afficher un bouton d'une certaine couleur sur la page web en fonction du niveau de la cuve
+              switch (niveauCuve){
+                case 0 ...3:
+                  client.println("<p><button class=\"button buttonCuveVert\"><\button></p>");
+                break;
+
+                case 4 ...6:
+                   client.println("<p><button class=\"button buttonCuveOrange\"><\button></p>");
+                break;
+
+                case 7 ...8:
+                  client.println("<p><button class=\"button buttonCuveRouge\"><\button></p>");
+                break;
+
+                default:
+                  
+              }
             // Etat sonde
 
             
