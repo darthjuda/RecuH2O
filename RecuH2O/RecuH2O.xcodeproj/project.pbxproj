@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B162B27824A3B06A00F2A48B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162B27724A3B06A00F2A48B /* Data.swift */; };
 		B1B92786247FF3C500EDF662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B92785247FF3C500EDF662 /* AppDelegate.swift */; };
 		B1B92788247FF3C500EDF662 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B92787247FF3C500EDF662 /* SceneDelegate.swift */; };
 		B1B9278A247FF3C500EDF662 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B92789247FF3C500EDF662 /* ContentView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B162B27724A3B06A00F2A48B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		B1B92782247FF3C500EDF662 /* RecuH2O.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecuH2O.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B92785247FF3C500EDF662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1B92787247FF3C500EDF662 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				B1B92785247FF3C500EDF662 /* AppDelegate.swift */,
 				B1B92787247FF3C500EDF662 /* SceneDelegate.swift */,
 				B1B92789247FF3C500EDF662 /* ContentView.swift */,
+				B162B27724A3B06A00F2A48B /* Data.swift */,
 				B1B9278B247FF3C700EDF662 /* Assets.xcassets */,
 				B1B92790247FF3C700EDF662 /* LaunchScreen.storyboard */,
 				B1B92793247FF3C700EDF662 /* Info.plist */,
@@ -270,6 +273,7 @@
 				B1B92786247FF3C500EDF662 /* AppDelegate.swift in Sources */,
 				B1B92788247FF3C500EDF662 /* SceneDelegate.swift in Sources */,
 				B1B9278A247FF3C500EDF662 /* ContentView.swift in Sources */,
+				B162B27824A3B06A00F2A48B /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
