@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>220A45DA-AF50-42D4-9C6F-8C90692872F7</key>
+		<key>2FE2AC4B-E2F7-4DA3-AA8B-45CD3E4B04A9</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,13 +15,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>220A45DA-AF50-42D4-9C6F-8C90692872F7.xcactivitylog</string>
+			<string>2FE2AC4B-E2F7-4DA3-AA8B-45CD3E4B04A9.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>RecuH2O project</string>
@@ -32,47 +32,13 @@
 			<key>signature</key>
 			<string>Preview RecuH2O</string>
 			<key>timeStartedRecording</key>
-			<real>614171578.86120605</real>
+			<real>614859958.83031595</real>
 			<key>timeStoppedRecording</key>
-			<real>614171580.97646296</real>
+			<real>614859960.27534902</real>
 			<key>title</key>
 			<string>Preview RecuH2O</string>
 			<key>uniqueIdentifier</key>
-			<string>220A45DA-AF50-42D4-9C6F-8C90692872F7</string>
-		</dict>
-		<key>2E5D2C0C-2EB1-464E-810B-4B8116A04DCB</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>2E5D2C0C-2EB1-464E-810B-4B8116A04DCB.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>RecuH2O project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>RecuH2O</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Preview RecuH2O</string>
-			<key>timeStartedRecording</key>
-			<real>614271233.54126799</real>
-			<key>timeStoppedRecording</key>
-			<real>614271235.08833802</real>
-			<key>title</key>
-			<string>Preview RecuH2O</string>
-			<key>uniqueIdentifier</key>
-			<string>2E5D2C0C-2EB1-464E-810B-4B8116A04DCB</string>
+			<string>2FE2AC4B-E2F7-4DA3-AA8B-45CD3E4B04A9</string>
 		</dict>
 	</dict>
 </dict>

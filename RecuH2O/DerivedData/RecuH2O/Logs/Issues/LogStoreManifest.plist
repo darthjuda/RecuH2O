@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>13F5919D-3CEA-48AF-AAF4-34A053C213A5</key>
+		<key>164F7521-2875-4D4E-985E-78DB9FB0FD17</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,24 +15,24 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
 			<key>fileName</key>
-			<string>13F5919D-3CEA-48AF-AAF4-34A053C213A5.xcactivitylog</string>
+			<string>164F7521-2875-4D4E-985E-78DB9FB0FD17.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>signature</key>
 			<string>RecuH2O-cqofkwwjacngdeaffbxchenkqcmr</string>
 			<key>timeStartedRecording</key>
-			<real>614271233.85496497</real>
+			<real>614859958.88890004</real>
 			<key>timeStoppedRecording</key>
-			<real>614271235.07637095</real>
+			<real>614859960.26546395</real>
 			<key>title</key>
 			<string>Build target RecuH2O</string>
 			<key>uniqueIdentifier</key>
-			<string>13F5919D-3CEA-48AF-AAF4-34A053C213A5</string>
+			<string>164F7521-2875-4D4E-985E-78DB9FB0FD17</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>
