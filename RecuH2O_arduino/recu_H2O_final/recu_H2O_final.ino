@@ -56,8 +56,7 @@ const long timeoutTime = 2000;
 #define analogPin      A0          // on utilise le pin A0 pour mesurer la tension du condensateur
 #define chargePin      10         // on utilise le pin S2(11) pour charger le condensateur 
 #define dischargePin   9         // on utilise le pin S3 (13) pour décharger le condensateur
-#define resistorValue  10000.0F   // on entre la valeur de la resistance que l'on utilise
-// le F permet de mettre la valeur de la resistance en float
+#define resistorValue  10000.0F   // on entre la valeur de la resistance que l'on utilise // le F permet de mettre la valeur de la resistance en float
 unsigned long startTime;
 unsigned long elapsedTime;
 float microFarads;                // on définit la variable microFarads en float pour garder la precision et faire des calculs
@@ -75,18 +74,20 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
-  // attache le servo motor au gpio 4
-  motor.attach(4);
+  // attache le servo motor au gpio D10
+  motor.attach(D10);
+  
 
   //initialiser les variables en sorties
-  pinMode(46, OUTPUT);
+  
   for (int i = 0; i <= ledCount; i++) {
     pinMode(ledPins[i], OUTPUT);
   }
+  
   pinMode(sonde, OUTPUT);
 
   // on met les sorties en LOW
-  digitalWrite(46, LOW);
+  
   for (int i = 0; i <= ledCount; i++) {
     digitalWrite(ledPins[i], LOW);
   }
@@ -127,6 +128,28 @@ void setup() {
 
 void loop() {
 
+  graphBarDisplay(niveauCuve);
+
+  switch (niveauCuve) {
+    case 0 ...7:
+      if (motorState == "on") {
+        Serial.println("clapet deja ouvert");
+      } else {
+        closeGate();
+        Serial.println(isOpen);
+      }
+      break;
+
+    case maxLvl:
+      if (motorState == "off") {
+        Serial.println("clapet deja fermé");
+      } else {
+        openGate();
+        Serial.println(isOpen);
+      }
+      break;
+  }
+
   WiFiClient client = server.available(); //écouter l'arrivé d'un cient
 
   if (client) { // si un nouveau client se connecte
@@ -152,6 +175,17 @@ void loop() {
             client.println();
 
             // faire qqch si le client envoie qqch de speciale
+            // Allumer ou eteindre le moteur manuellement
+            if (header.indexOf("GET /motor/on") >= 0) {
+              Serial.println("GPIO1 on");
+              motorState = "on";
+              openGate();
+            } else if (header.indexOf("GET /motor/off") >= 0) {
+              Serial.println("GPIO1 off");
+              motorState = "off";
+              closeGate();
+            }
+
 
 
             // Affichage page web en HTML et CSS
@@ -171,22 +205,22 @@ void loop() {
             client.println("<body><h1> Recu H20 </h1>");
 
             // Affichage des variables d'etats
-            
+
 
             // Etat moteur
             client.println("<p>Etat du clapet: " + motorState + "</p>");
             // si etat clapet(moteur) = off affiché on sur le bouton
             if (motorState == "off") {
               //client.println("<p><a href=\"/addresseCONTROLPINMOTOR"><button class=\"button\">ON</button></a></p>");
-              client.println("<p><a href=\"/5/on\"><button class=\"button\">ON</button></a></p>");
+              client.println("<p><a href=\"/motor/on\"><button class=\"button\">ON</button></a></p>");
             } else {
               //client.println("<p><a href=\"addresse CONTROL PIN MOTOR"><button class="button button2\">OFF</button></a></p>");
-              client.println("<p><a href=\"/5/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/motor/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
 
             // Etat led
             client.println("<p>Etat du niveau de la cuve: " + niveauCuveState + "</p>");
-           
+
             switch (niveauCuve) {
               case 0 ...3:
                 client.println("<p><span class=\"button dotVert\">Bas</span></p>");
@@ -208,7 +242,7 @@ void loop() {
 
             // Etat sonde
             // TODO: afficher l'etat de la sonde en web
-            
+
             client.println("<p>Etat Sonde: " + sondeState + "</p>");
             if (sondeState == "off") {
               client.println("<p><a href=\"/\"><button class=\"button\">ON</button></a></p>");
@@ -229,31 +263,14 @@ void loop() {
         }
       }
     }
-    // Clear the header variable
+    // Libere la variable header
     header = "";
-    // Close the connection
+    // Termine la connection avec le client
     client.stop();
     Serial.println("Client déconnecté.");
     Serial.println("");
-
-    switch (niveauCuve) {
-      case 0 ...7:
-        openGate(); 
-        Serial.println(isOpen);
-        break;
-
-      case maxLvl:
-        closeGate();
-        Serial.println(isOpen);
-        break;
-    }
-
-    graphBarDisplay(niveauCuve);
-
-    mesureCapSonde();
-   Serial.println(mesureSonde);
-   Serial.println(sondeState);
   }
+
 }
 
 void openGate() {
@@ -286,7 +303,7 @@ void closeGate() {
 
 void graphBarDisplay(int niveau) {
   niveau -= 1; // on enlève 1 a la valeur du niveau
-  for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (10) a la valeur du niveau, on décrémente i de 1
+  for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (8) a la valeur du niveau, on décrémente i de 1
     digitalWrite(ledPins[i], LOW); // on éteind la led correspondant a la valeur de i
   }
 
@@ -305,14 +322,14 @@ float mesureCapSonde() {
   elapsedTime = millis() - startTime;
   // on convertit les millisecondes en secondes ( 10^-3 )
   microFarads = ((float)elapsedTime / resistorValue) * 1000;
-    Serial.print(elapsedTime);       // on ecrit la valeur dans le moniteur serie
-    Serial.print(" mS    ");         // on ecrit l'unite dans le moniteur serie
+  Serial.print(elapsedTime);       // on ecrit la valeur dans le moniteur serie
+  Serial.print(" mS    ");         // on ecrit l'unite dans le moniteur serie
 
 
   if (microFarads > 1) {
     mesureSonde = microFarads;
-        Serial.print((long)microFarads);       // on ecrit la valeur dans le moniteur serie
-        Serial.println(" microFarads");        // on ecrit l'unite dans le moniteur serie
+    Serial.print((long)microFarads);       // on ecrit la valeur dans le moniteur serie
+    Serial.println(" microFarads");        // on ecrit l'unite dans le moniteur serie
   }
   else
   {
@@ -321,8 +338,8 @@ float mesureCapSonde() {
 
     nanoFarads = microFarads * 1000.0; // on multiplie par 1000 pour convertir en nanoFarads (10^-9 Farads)
     mesureSonde = nanoFarads;
-        Serial.print((long)nanoFarads);         // on ecrit la valeur dans le moniteur serie
-        Serial.println(" nanoFarads");          // on ecrit l'unite dans le moniteur serie
+    Serial.print((long)nanoFarads);         // on ecrit la valeur dans le moniteur serie
+    Serial.println(" nanoFarads");          // on ecrit l'unite dans le moniteur serie
   }
 
   /* dicharge the capacitor  */
@@ -331,7 +348,7 @@ float mesureCapSonde() {
   digitalWrite(dischargePin, LOW);          // on alimente le pin de dechargement
   while (analogRead(analogPin) > 0) {       // tant que la valeur lue sur le pin A0 est superieur a 0
   }
-  
+
   pinMode(dischargePin, INPUT);            // on met la broche de dechargement en entree
   sondeState = "off";
 
