@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MCU_Module:Arduino_UNO_R3 A?
-U 1 1 5EE0F7ED
-P 3050 3350
-F 0 "A?" H 3950 4450 50  0000 C CNN
-F 1 "Arduino_UNO_R3" H 3700 4350 50  0000 C CNN
-F 2 "Module:Arduino_UNO_R3" H 3050 3350 50  0001 C CIN
-F 3 "https://www.arduino.cc/en/Main/arduinoBoardUno" H 3050 3350 50  0001 C CNN
-	1    3050 3350
-	-1   0    0    -1  
-$EndComp
-$Comp
 L LED:HDSP-4830_2 BAR?
 U 1 1 5EE0DBEF
 P 3750 3550
