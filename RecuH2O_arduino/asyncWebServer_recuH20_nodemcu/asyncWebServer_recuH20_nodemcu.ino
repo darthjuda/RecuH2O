@@ -33,16 +33,16 @@ float microFarads;
 float nanoFarads;
 float mesureSonde;
 
-// boolean pour l'ouverture du clapet
+// boolean pour l'ouverture du clapet %STATECLAPET%
 bool isOpen;
 
-// Stores LED state
+// Stores LED state %STATELEDS%
 String ledState;
 
-// Stores motor state
+// Stores motor state %STATEMOTOR%
 String motorState;
 
-// Stores sonde state
+// Stores sonde state %STATESONDE%
 String sondeState;
 
 // creation AsyncWebServer objet sur port 80
