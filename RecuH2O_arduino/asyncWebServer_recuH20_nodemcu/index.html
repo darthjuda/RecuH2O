@@ -33,11 +33,6 @@ Complete project details at https://github.com/darthjuda/RecuH2O
             <a href="/off"><button class="button button2">OFF</button></a>
         </p>
         <p>
-            <span class="sensor-labels">Temperature</span>
-            <span id="temperature">%TEMPERATURE%</span>
-            <sup class="units">&deg;C</sup>
-        </p>
-        <p>
             <span class="sensor-labels">Humidity</span>
             <span id="humidity">%HUMIDITY%</span>
             <sup class="units">&#37;</sup>
@@ -59,7 +54,7 @@ Complete project details at https://github.com/darthjuda/RecuH2O
             xhttp.open("GET", "/temperature", true);
             xhttp.send();
         }, 10000 ) ;
-    
+
         setInterval(function ( ) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -70,7 +65,7 @@ Complete project details at https://github.com/darthjuda/RecuH2O
             xhttp.open("GET", "/humidity", true);
             xhttp.send();
         }, 10000 ) ;
-    
+
         setInterval(function ( ) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -83,4 +78,3 @@ Complete project details at https://github.com/darthjuda/RecuH2O
         }, 10000 ) ;
     </script>
 </html>
-

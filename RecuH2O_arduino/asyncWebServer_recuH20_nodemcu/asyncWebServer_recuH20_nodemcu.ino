@@ -7,8 +7,8 @@
 
 
 // à remplacer avec vos identifiants wifi
-const char* ssid = "REPLACE_WITH_YOUR_SSID";
-const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+const char* ssid = "Reseau Wi-Fi de mehdi";
+const char* password = "emyTourniquet1988";
 
 
 
