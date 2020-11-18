@@ -5,6 +5,7 @@
 #include <FS.h>
 #include <Servo.h>
 
+
 // à remplacer avec vos identifiants wifi
 const char* ssid = "REPLACE_WITH_YOUR_SSID";
 const char* password = "REPLACE_WITH_YOUR_PASSWORD";
@@ -14,7 +15,7 @@ const char* password = "REPLACE_WITH_YOUR_PASSWORD";
 // permet de dire que le graphbar possède 6 led
 const int ledCount = 6;
 
-// definition array led 
+// definition array led
 const int ledPins[] = {
   D1, D2, D3, D5, D6, D7
 };
@@ -22,7 +23,7 @@ const int ledPins[] = {
 
 
 #define analogPin A0 // on utilise le pin A0 pour mesurer la tension du condensateur
-#define chargePin 
+#define chargePin
 #define dischargePin
 #define resistorValue 10000.0F // on entre la valeur de la résistance que l'on utilise
 // le F permet de mettre la valeur de la résistance en float
@@ -45,6 +46,9 @@ String motorState;
 // Stores sonde state %STATESONDE%
 String sondeState;
 
+// entier pour sauvegarder le niveau
+int niveau;
+
 // creation AsyncWebServer objet sur port 80
 AsyncWebServer server(80);
 
@@ -59,6 +63,36 @@ String getPressure() {
   Serial.println(pressure);
   return String(pressure);
 }
+
+int measureSonde() {
+  /*
+  - mesure de la capacitance
+  - transforme la capacitance en niveau compris entre 0 et 6
+  - return int(niveau)
+  */
+}
+
+int displayLed(niveau) {
+  /*
+  - allumer les leds en fonction du niveau
+  - return int(nombre de led allumée)
+  */
+}
+
+String openGate() {
+  /*
+  - ouvrir le clapet
+  - return "état du moteur"
+  */
+}
+
+String closeGate() {
+  /*
+  - fermer le clapet
+  - return "état du moteur"
+  */
+}
+
 
 
 
