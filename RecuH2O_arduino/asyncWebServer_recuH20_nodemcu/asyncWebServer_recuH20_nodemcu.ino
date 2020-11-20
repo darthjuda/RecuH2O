@@ -49,6 +49,12 @@ String sondeState;
 // entier pour sauvegarder le niveau
 int niveau;
 
+// valeur de la capacitance lorsque la cuve est pleine
+float capFull;
+
+//valeur de la capacitance à l'instant ou l'on mesure
+float capInstant;
+
 // creation AsyncWebServer objet sur port 80
 AsyncWebServer server(80);
 
@@ -56,6 +62,9 @@ AsyncWebServer server(80);
 Servo motor;
 // attache le servo motor au gpio D8
 motor.attach(D8);
+
+// on créer une booléene pour avoir une condition pour connaitre l'état du moteur
+bool isOpen;
 
 // exemple fonction
 String getPressure() {
@@ -65,32 +74,58 @@ String getPressure() {
 }
 
 int measureSonde() {
-  /*
-  - mesure de la capacitance
-  - transforme la capacitance en niveau compris entre 0 et 6
-  - return int(niveau)
-  */
+
+  analogRead(A0); // mesure de la capacitance
+  niveau = ((capInstant*100)/capFull) //transforme la capacitance en niveau en %
+  niveau = (niveau*6)/100 // on transforme le niveau en % en niveau compris entre 0 et 6
+  return int(niveau)
+
 }
 
 int displayLed(niveau) {
-  /*
-  - allumer les leds en fonction du niveau
+
+  niveau -= 1; // on enlève 1 a la valeur du niveau
+  for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (6) a la valeur du niveau, on décrémente i de 1
+    digitalWrite(ledPins[i], LOW); // on éteind la led correspondant a la valeur de i
+  }
+
+  for (int i = 0; i <= niveau; i++) { // pour i allant de 0 a la valeur du niveau, on incrémente i de 1
+    digitalWrite(ledPins[i], HIGH); // on allume la led correspondant a la valeur de i
   - return int(nombre de led allumée)
-  */
+
 }
 
 String openGate() {
-  /*
-  - ouvrir le clapet
-  - return "état du moteur"
-  */
+
+  if (isOpen) {
+    Serial.println("clapet deja ouvert");
+  }
+  else {
+    for (int pos = 90; pos >= 0; pos--) { // on passe de la position 90 a 0 en décrémentant de 1 pas a chaque tour de la boucle
+      motor.write(pos); // on dit au moteur de se mettre a la valeur de pos
+      delay(15);// on attend 15 ms pour laisser le temps au moteur de se mettre en position
+    }
+    isOpen = true;
+    Serial.println("ouverture clapet");
+  }
+  return (isOpen)
+
 }
 
 String closeGate() {
-  /*
-  - fermer le clapet
-  - return "état du moteur"
-  */
+  if (!isOpen) {
+    Serial.println("clapet deja ferme");
+  }
+  else {
+    for (int pos = 0; pos <= 90; pos++) { // on passe de la position 0 a 90 en incrémentant de 1 pas a chaque tour de la boucle
+      motor.write(pos); // on dit au moteur de se mettre a la valeur de pos
+      delay(15); // on attend 15 ms pour laisser le temps au moteur de se mettre en position
+    }
+    isOpen = false;
+    Serial.println("fermeture clapet");
+  }
+  return (isOpen)
+
 }
 
 
