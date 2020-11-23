@@ -28,11 +28,11 @@ const int ledPins[] = {
 #define resistorValue 10000.0F // on entre la valeur de la résistance que l'on utilise
 // le F permet de mettre la valeur de la résistance en float
 
-unsigned long startTime;
-unsigned long elapsedTime
-float microFarads;
-float nanoFarads;
-float mesureSonde;
+unsigned long startTime; // variable pour stocker la valeur du timer
+unsigned long elapsedTime; // variable pour le temps de chargement
+float microFarads; // variable pour les microFarads
+float nanoFarads; // variable pour les nanoFarads
+float mesureSonde; // variable pour stocker la mesure de la sonde
 
 // boolean pour l'ouverture du clapet %STATECLAPET%
 bool isOpen;
@@ -76,7 +76,7 @@ String getPressure() {
   return String(pressure);
 }
 
-int measureSonde() {
+void measureSonde() {
 
    digitalWrite(chargePin, HIGH);  // on charge le condensateur 
   startTime = millis(); // on démarre le timer
@@ -85,6 +85,15 @@ int measureSonde() {
   } // tant que le nombre de bits lu sur A0 n'est pas égal à 647, on ne fait rien
 
    elapsedTime = millis() - startTime;
+
+    // décharger le condensateur
+  digitalWrite(chargePin, LOW);             // on stoppe l'alimentation du condensateur
+  pinMode(dischargePin, OUTPUT);            // on met le pin de dechargement en sortie
+  digitalWrite(dischargePin, LOW);          // on alimente le pin de dechargement 
+  while (analogRead(analogPin) > 0) {       // tant que la valeur lue sur le pin A0 est superieur a 0
+  }
+
+  pinMode(dischargePin, INPUT);            // on met la broche de dechargement en entree
 
    microFarads = ((float)elapsedTime / resistorValue) * 1000; // on convertit les millisecondes en secondes (10^-3)
 
@@ -108,21 +117,25 @@ int measureSonde() {
     Serial.println(" nanoFarads");          // on ecrit l'unite dans le moniteur serie
   }
 
-  // décharger le condensateur
-  digitalWrite(chargePin, LOW);             // on stoppe l'alimentation du condensateur
-  pinMode(dischargePin, OUTPUT);            // on met le pin de dechargement en sortie
-  digitalWrite(dischargePin, LOW);          // on alimente le pin de dechargement 
-  while (analogRead(analogPin) > 0) {       // tant que la valeur lue sur le pin A0 est superieur a 0
-  }
-
-  pinMode(dischargePin, INPUT);            // on met la broche de dechargement en entree
+ 
 
   niveau = ((capInstant*100)/capFull) //transforme la capacitance en niveau en %
   niveau = (niveau*6)/100 // on transforme le niveau en % en niveau compris entre 0 et 6
-  return int(niveau)
+
+  /* 
+   *  vérifier état sonde:
+   *  si capvide < Capinstant < capfull -> sondestate = "ok"
+   *  sinon sondestate = "error"
+   *  appeler displayLed(niveau, sondeState)
+   */
 }
 
-int displayLed(niveau) {
+void displayLed(niveau) {
+
+  /*
+   *  si sondeState == "ok" -> afficher les en fonction du parametre niveau
+   *  sinon (sondeState == "erreur" -> faire clignoter les deux led rouge ensemble sans la fonction delay
+   */
 
   niveau -= 1; // on enlève 1 a la valeur du niveau
   for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (6) a la valeur du niveau, on décrémente i de 1
@@ -131,11 +144,13 @@ int displayLed(niveau) {
 
   for (int i = 0; i <= niveau; i++) { // pour i allant de 0 a la valeur du niveau, on incrémente i de 1
     digitalWrite(ledPins[i], HIGH); // on allume la led correspondant a la valeur de i
-    return int(nombre de led allumée)
   }
 }
 
 String openGate() {
+  /*
+   * ne pas retourner de valeur
+   */
 
   if (isOpen) {
     Serial.println("clapet deja ouvert");
@@ -153,6 +168,9 @@ String openGate() {
 }
 
 String closeGate() {
+  /*
+   * ne pas retourner de valeur
+   */
   if (!isOpen) {
     Serial.println("clapet deja ferme");
   }
