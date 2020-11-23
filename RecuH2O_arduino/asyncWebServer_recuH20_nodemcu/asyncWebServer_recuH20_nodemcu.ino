@@ -75,11 +75,10 @@ String getPressure() {
 
 int measureSonde() {
 
-  analogRead(A0); // mesure de la capacitance
+  analogRead(A0); // mesure de la capacitance //FAUX!!!!!!!!
   niveau = ((capInstant*100)/capFull) //transforme la capacitance en niveau en %
   niveau = (niveau*6)/100 // on transforme le niveau en % en niveau compris entre 0 et 6
   return int(niveau)
-
 }
 
 int displayLed(niveau) {
@@ -91,8 +90,8 @@ int displayLed(niveau) {
 
   for (int i = 0; i <= niveau; i++) { // pour i allant de 0 a la valeur du niveau, on incrémente i de 1
     digitalWrite(ledPins[i], HIGH); // on allume la led correspondant a la valeur de i
-  - return int(nombre de led allumée)
-
+    return int(nombre de led allumée)
+  }
 }
 
 String openGate() {
