@@ -128,6 +128,18 @@ void measureSonde() {
    *  sinon sondestate = "error"
    *  appeler displayLed(niveau, sondeState)
    */
+
+   if(( capInstant > capEmpty) && (capInstant < capFull))
+   {
+    sondeState = "sonde ok";
+    Serial.print(sondeState);
+   }
+
+   else 
+   {
+    sondeState = "probleme sonde";
+    Serial.print(sondeState);
+   }
 }
 
 void displayLed(niveau) {
@@ -136,14 +148,20 @@ void displayLed(niveau) {
    *  si sondeState == "ok" -> afficher les en fonction du parametre niveau
    *  sinon (sondeState == "erreur" -> faire clignoter les deux led rouge ensemble sans la fonction delay
    */
+  if(sondeState == "sonde ok")
+  {
+    niveau -= 1; // on enlève 1 a la valeur du niveau
+    for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (6) a la valeur du niveau, on décrémente i de 1
+     digitalWrite(ledPins[i], LOW); // on éteind la led correspondant a la valeur de i
+   }
 
-  niveau -= 1; // on enlève 1 a la valeur du niveau
-  for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (6) a la valeur du niveau, on décrémente i de 1
-    digitalWrite(ledPins[i], LOW); // on éteind la led correspondant a la valeur de i
+    for (int i = 0; i <= niveau; i++) { // pour i allant de 0 a la valeur du niveau, on incrémente i de 1
+     digitalWrite(ledPins[i], HIGH); // on allume la led correspondant a la valeur de i
   }
-
-  for (int i = 0; i <= niveau; i++) { // pour i allant de 0 a la valeur du niveau, on incrémente i de 1
-    digitalWrite(ledPins[i], HIGH); // on allume la led correspondant a la valeur de i
+  }
+  else 
+  {
+    
   }
 }
 
