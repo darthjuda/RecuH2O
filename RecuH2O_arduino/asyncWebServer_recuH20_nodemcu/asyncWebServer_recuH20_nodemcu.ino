@@ -58,6 +58,9 @@ String sondeState;
 // entier pour sauvegarder le niveau
 int niveau;
 
+// Stocker la variable pour le niveau en pourcentage
+float level;
+
 // valeur de la capacitance lorsque la cuve est vide Ɛ
 const float capEmpty = 38.82 * 10 * -3; // 38.82 est en picofarad donc on multiplie par 10^-3 pour le convertir en nanofarad
 
@@ -125,18 +128,21 @@ void measureSonde() {
       Serial.println(" nanoFarads");          // on ecrit l'unite dans le moniteur serie
     }
 
-    //capInstant = mesureSonde;
+    capInstant = mesureSonde;
 
     niveau = ((capInstant * 100) / capFull);    //transforme la capacitance en niveau en %
+    level = niveau;
+
+// ATTENTION niveau est un INT il faudra faire un arrondie a l'entier superieur
     niveau = (niveau * 6) / 100;               // on transforme le niveau en % en niveau compris entre 0 et 6
 
 
-                      /*
-                          vérifier état sonde:
-                          si capvide < Capinstant < capfull -> sondestate = "ok"
-                          sinon sondestate = "error"
-                          appeler displayLed(niveau, sondeState)
-                      */
+  /*
+  vérifier état sonde:
+  si capvide < Capinstant < capfull -> sondestate = "ok"
+  sinon sondestate = "error"
+  appeler displayLed(niveau, sondeState)
+  */
 
     if (( capInstant > capEmpty) && (capInstant < capFull)) {
       sondeState = "ok";
@@ -243,6 +249,9 @@ String processor(const String& var) {
   }
   else if (var == "STATELEDS") {
     return ledState;
+  }
+  else if (var == "LEVEL") {
+    return ;
   }
 }
 

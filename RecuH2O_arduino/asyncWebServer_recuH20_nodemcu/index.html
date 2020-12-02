@@ -12,35 +12,22 @@ Complete project details at https://github.com/darthjuda/RecuH2O
     </head>
     <body>
         <h1>Recu H2O Web Server</h1>
-        <p>Ouverture du clapet<strong> %STATECLAPET%</strong></p>
+
+        <p>Etat de la sonde:<strong> %STATESONDE%</strong></p>
+        <br>
+        <p>Etat du moteur:<strong> %STATEMOTOR%</strong></p>
+        <p>Ouverture du clapet:<strong> %STATECLAPET%</strong></p>
         <p>
-            <a href="/on"><button class="button">ON</button></a>
-            <a href="/off"><button class="button button2">OFF</button></a>
+            <a href="/opengate"><button class="button">Ouvert</button></a>
+            <a href="/closegate"><button class="button button2">Fermé</button></a>
         </p>
-        <p>Etat des Leds<strong> %STATELEDS%</strong></p>
+        <br>
+        <p>Etat des Leds:<strong> %STATELEDS%</strong></p>
+        <br>
         <p>
-            <a href="/on"><button class="button">ON</button></a>
-            <a href="/off"><button class="button button2">OFF</button></a>
-        </p>
-        <p>Etat du moteur<strong> %STATEMOTOR%</strong></p>
-        <p>
-            <a href="/on"><button class="button">ON</button></a>
-            <a href="/off"><button class="button button2">OFF</button></a>
-        </p>
-        <p>Etat de la sonde<strong> %STATESONDE%</strong></p>
-        <p>
-            <a href="/on"><button class="button">ON</button></a>
-            <a href="/off"><button class="button button2">OFF</button></a>
-        </p>
-        <p>
-            <span class="sensor-labels">Humidity</span>
-            <span id="humidity">%HUMIDITY%</span>
-            <sup class="units">&#37;</sup>
-        </p>
-        <p>
-            <span class="sensor-labels">Pressure</span>
-            <span id="pressure">%PRESSURE%</span>
-            <sup class="units">hPa</sup>
+            <span class="sensor-labels">Niveau Cuve</span>
+            <span id="humidity">%LEVEL%</span>
+            <sup class="units">%</sup>
         </p>
     </body>
     <script>
