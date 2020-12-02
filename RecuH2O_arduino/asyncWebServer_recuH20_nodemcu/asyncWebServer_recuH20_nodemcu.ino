@@ -151,7 +151,7 @@ void displayLed(int niveau, String sondeState) {
       si sondeState == "ok" -> afficher les en fonction du parametre niveau
       sinon (sondeState == "erreur" -> faire clignoter les deux led rouge ensemble sans la fonction delay
   */
-  if (sondeState == "sonde ok") {
+  if (sondeState == "ok") {
     niveau -= 1; // on enlève 1 a la valeur du niveau
     for (int i = ledCount; i >= niveau; i--) { // pour i allant au nombre de led (6) a la valeur du niveau, on décrémente i de 1
       digitalWrite(ledPins[i], LOW); // on éteind la led correspondant a la valeur de i
@@ -219,25 +219,24 @@ void closeGate() {
 // Remplacement placeholder avec valeur d'etat au travers des fonctions get()
 String processor(const String& var) {
   Serial.println(var);
-//  if (var == "STATE") {
-//    if (digitalRead(ledPin)) {
-//      ledState = "ON";
-//    }
-//    else {
-//      ledState = "OFF";
-//    }
-//    Serial.print(ledState);
-//    return ledState;
-//  }
-//  else if (var == "TEMPERATURE") {
-//    return getTemperature();
-//  }
-//  else if (var == "HUMIDITY") {
-//    return getHumidity();
-//  }
-//  else if (var == "PRESSURE") {
-//    return getPressure();
-//  }
+  if (var == "STATECLAPET") {
+    if (isOpen) {
+      return "ouvert";
+    }
+    else {
+      return "fermé";
+    }
+    Serial.print(isOpen);
+  }
+  else if (var == "STATESONDE") {
+    return sondeState;
+  }
+  else if (var == "STATEMOTOR") {
+    return motorState;
+  }
+  else if (var == "STATELEDS") {
+    return ledState;
+  }
 }
 
 void setup() {
