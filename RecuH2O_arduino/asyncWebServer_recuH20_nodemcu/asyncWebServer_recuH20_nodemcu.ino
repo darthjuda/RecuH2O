@@ -32,8 +32,8 @@ const long interval = 1000;
 
 
 #define analogPin A0 // on utilise le pin A0 pour mesurer la tension du condensateur
-#define chargePin 9  // on utilise le pin S2(9) pour charger le condensateur 
-#define dischargePin 10  // on utilise le pin S3(10) pour décharger le condensateur 
+#define chargePin 9  // on utilise le pin S2(9) pour charger le condensateur
+#define dischargePin 10  // on utilise le pin S3(10) pour décharger le condensateur
 #define resistorValue 10000.0F // on entre la valeur de la résistance que l'on utilise
 // le F permet de mettre la valeur de la résistance en float
 
@@ -82,66 +82,73 @@ Servo motor;
 
 void measureSonde() {
 
-  digitalWrite(chargePin, HIGH);  // on charge le condensateur
-  startTime = millis(); // on démarre le timer
+  unsigned long millisActuel = millis();
+  const long intervalMesure = 30000;
 
-  while (analogRead(analogPin) < 648) {  // 647 correspond a  63.2% de 1023, qui correspond a la tension maximum
-  } // tant que le nombre de bits lu sur A0 n'est pas égal à 647, on ne fait rien
+  if (millisActuel - previousMillis >= intervalMesure) {
+    previousMillis = millisActuel;
 
-  elapsedTime = millis() - startTime;
+    digitalWrite(chargePin, HIGH);  // on charge le condensateur
+    startTime = millis(); // on démarre le timer
 
-  // décharger le condensateur
-  digitalWrite(chargePin, LOW);             // on stoppe l'alimentation du condensateur
-  pinMode(dischargePin, OUTPUT);            // on met le pin de dechargement en sortie
-  digitalWrite(dischargePin, LOW);          // on alimente le pin de dechargement
-  while (analogRead(analogPin) > 0) {       // tant que la valeur lue sur le pin A0 est superieur a 0
+    while (analogRead(analogPin) < 648) {  // 647 correspond a  63.2% de 1023, qui correspond a la tension maximum
+    } // tant que le nombre de bits lu sur A0 n'est pas égal à 647, on ne fait rien
+
+    elapsedTime = millis() - startTime;
+
+    // décharger le condensateur
+    digitalWrite(chargePin, LOW);             // on stoppe l'alimentation du condensateur
+    pinMode(dischargePin, OUTPUT);            // on met le pin de dechargement en sortie
+    digitalWrite(dischargePin, LOW);          // on alimente le pin de dechargement
+    while (analogRead(analogPin) > 0) {       // tant que la valeur lue sur le pin A0 est superieur a 0
+    }
+
+    pinMode(dischargePin, INPUT);            // on met la broche de dechargement en entree
+
+    microFarads = ((float)elapsedTime / resistorValue) * 1000; // on convertit les millisecondes en secondes (10^-3)
+
+    Serial.print(elapsedTime);       // on ecrit la valeur dans le moniteur serie
+    Serial.print(" mS    ");         // on ecrit l'unite dans le moniteur serie
+
+    if (microFarads > 1) {
+      mesureSonde = microFarads;
+      Serial.print((long)microFarads);       // on ecrit la valeur dans le moniteur serie
+      Serial.println(" microFarads");  // on ecrit l'unite dans le moniteur serie
+    }
+    else {
+      // si la valeur est plus petite que le microFarads, on la convertit en nanoFarads (10^-9 Farad).
+      // c'est une solution de rechange car le Serial.print ne peux pas ecrire de float
+
+      nanoFarads = microFarads * 1000.0; // on multiplie par 1000 pour convertir en nanoFarads (10^-9 Farads)
+      mesureSonde = nanoFarads;
+      Serial.print((long)nanoFarads);         // on ecrit la valeur dans le moniteur serie
+      Serial.println(" nanoFarads");          // on ecrit l'unite dans le moniteur serie
+    }
+
+    //capInstant = mesureSonde;
+
+    niveau = ((capInstant * 100) / capFull);    //transforme la capacitance en niveau en %
+    niveau = (niveau * 6) / 100;               // on transforme le niveau en % en niveau compris entre 0 et 6
+
+
+                      /*
+                          vérifier état sonde:
+                          si capvide < Capinstant < capfull -> sondestate = "ok"
+                          sinon sondestate = "error"
+                          appeler displayLed(niveau, sondeState)
+                      */
+
+    if (( capInstant > capEmpty) && (capInstant < capFull)) {
+      sondeState = "ok";
+      Serial.print(sondeState);
+    }
+    else {
+      sondeState = "error";
+      Serial.print(sondeState);
+    }
+
+    displayLed(niveau, sondeState);
   }
-
-  pinMode(dischargePin, INPUT);            // on met la broche de dechargement en entree
-
-  microFarads = ((float)elapsedTime / resistorValue) * 1000; // on convertit les millisecondes en secondes (10^-3)
-
-  Serial.print(elapsedTime);       // on ecrit la valeur dans le moniteur serie
-  Serial.print(" mS    ");         // on ecrit l'unite dans le moniteur serie
-
-  if (microFarads > 1) {
-    mesureSonde = microFarads;
-    Serial.print((long)microFarads);       // on ecrit la valeur dans le moniteur serie
-    Serial.println(" microFarads");  // on ecrit l'unite dans le moniteur serie
-  }
-  else {
-    // si la valeur est plus petite que le microFarads, on la convertit en nanoFarads (10^-9 Farad).
-    // c'est une solution de rechange car le Serial.print ne peux pas ecrire de float
-
-    nanoFarads = microFarads * 1000.0; // on multiplie par 1000 pour convertir en nanoFarads (10^-9 Farads)
-    mesureSonde = nanoFarads;
-    Serial.print((long)nanoFarads);         // on ecrit la valeur dans le moniteur serie
-    Serial.println(" nanoFarads");          // on ecrit l'unite dans le moniteur serie
-  }
-
-  //capInstant = mesureSonde;
-
-  niveau = ((capInstant * 100) / capFull);    //transforme la capacitance en niveau en %
-  niveau = (niveau * 6) / 100;               // on transforme le niveau en % en niveau compris entre 0 et 6
-
-
-                    /*
-                        vérifier état sonde:
-                        si capvide < Capinstant < capfull -> sondestate = "ok"
-                        sinon sondestate = "error"
-                        appeler displayLed(niveau, sondeState)
-                    */
-
-  if (( capInstant > capEmpty) && (capInstant < capFull)) {
-    sondeState = "ok";
-    Serial.print(sondeState);
-  }
-  else {
-    sondeState = "error";
-    Serial.print(sondeState);
-  }
-
-  displayLed(niveau, sondeState);
 
 }
 
@@ -169,17 +176,17 @@ void displayLed(int niveau, String sondeState) {
 
     if (millisActuel - previousMillis >= interval) {
       previousMillis = millisActuel;
-    }
 
-    if (etatLed == LOW) {
-      etatLed = HIGH;
-    }
-    else {
-      etatLed = LOW;
-    }
+      if (etatLed == LOW) {
+        etatLed = HIGH;
+      }
+      else {
+        etatLed = LOW;
+      }
 
-    digitalWrite(ledPinR, etatLed);
-    digitalWrite(ledPinR2, etatLed);
+      digitalWrite(ledPinR, etatLed);
+      digitalWrite(ledPinR2, etatLed);
+    }
   }
 }
 
@@ -272,20 +279,18 @@ void setup() {
     request->send(SPIFFS, "/style.css", "text/css");
   });
 
-//  // exemple
-//  // Route pour mettre GPIO led à HIGH
-//  server.on("/on", HTTP_GET, [](AsyncWebServerRequest * request) {
-//    digitalWrite(ledPin, HIGH);
-//    request->send(SPIFFS, "/index.html", String(), false, processor);
-//  });
+  // Route pour ouvrir le clapet
+  server.on("/opengate", HTTP_GET, [](AsyncWebServerRequest * request) {
+    openGate();
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
 
-  //exemple
-//  // Route pour mettre GPIO led à LOW
-//  server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request) {
-//    digitalWrite(ledPin, LOW);
-//    request->send(SPIFFS, "/index.html", String(), false, processor);
-//  });
-//
+  // Route pour fermer le clapet
+  server.on("/closegate", HTTP_GET, [](AsyncWebServerRequest * request) {
+    closeGate();
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
+
 //  //exemple
 //  // Route pour afficher IP/temperature avec fonction getTemperature()
 //  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
@@ -300,6 +305,7 @@ void setup() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // effectue une mesure toutes les 30 secondes -> const long intervalMesure
+  measureSonde()
 
 }
