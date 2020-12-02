@@ -32,8 +32,8 @@ const long interval = 1000;
 
 
 #define analogPin A0 // on utilise le pin A0 pour mesurer la tension du condensateur
-#define chargePin
-#define dischargePin
+#define chargePin 9  // on utilise le pin S2(9) pour charger le condensateur 
+#define dischargePin 10  // on utilise le pin S3(10) pour décharger le condensateur 
 #define resistorValue 10000.0F // on entre la valeur de la résistance que l'on utilise
 // le F permet de mettre la valeur de la résistance en float
 
@@ -59,7 +59,7 @@ String sondeState;
 int niveau;
 
 // valeur de la capacitance lorsque la cuve est vide Ɛ
-const float capEmpty = 38.82*10*-3; // 38.82 est en picofarad donc on multiplie par 10^-3 pour le convertir en nanofarad
+const float capEmpty = 38.82 * 10 * -3; // 38.82 est en picofarad donc on multiplie par 10^-3 pour le convertir en nanofarad
 
 // valeur de la capacitance lorsque la cuve est pleine
 const float capFull = 3.11; // la valeur est en nano farad
@@ -72,18 +72,13 @@ AsyncWebServer server(80);
 
 // création de l'objet moteur
 Servo motor;
-// attache le servo motor au gpio D8
-motor.attach(D8);
-
-// on créer une booléene pour avoir une condition pour connaitre l'état du moteur
-bool isOpen;
 
 // exemple fonction
-String getPressure() {
-  float pressure = bme.readPressure() / 100.0F;
-  Serial.println(pressure);
-  return String(pressure);
-}
+//String getPressure() {
+//  float pressure = bme.readPressure() / 100.0F;
+//  Serial.println(pressure);
+//  return String(pressure);
+//}
 
 void measureSonde() {
 
@@ -114,9 +109,7 @@ void measureSonde() {
     Serial.print((long)microFarads);       // on ecrit la valeur dans le moniteur serie
     Serial.println(" microFarads");  // on ecrit l'unite dans le moniteur serie
   }
-
-  else
-  {
+  else {
     // si la valeur est plus petite que le microFarads, on la convertit en nanoFarads (10^-9 Farad).
     // c'est une solution de rechange car le Serial.print ne peux pas ecrire de float
 
@@ -128,8 +121,9 @@ void measureSonde() {
 
   //capInstant = mesureSonde;
 
-  niveau = ((capInstant * 100) / capFull) //transforme la capacitance en niveau en %
-           niveau = (niveau * 6) / 100 // on transforme le niveau en % en niveau compris entre 0 et 6
+  niveau = ((capInstant * 100) / capFull);    //transforme la capacitance en niveau en %
+  niveau = (niveau * 6) / 100;               // on transforme le niveau en % en niveau compris entre 0 et 6
+
 
                     /*
                         vérifier état sonde:
@@ -142,17 +136,16 @@ void measureSonde() {
     sondeState = "ok";
     Serial.print(sondeState);
   }
-
   else {
     sondeState = "error";
     Serial.print(sondeState);
   }
 
-  displayLed(niveau, sondeState)
+  displayLed(niveau, sondeState);
 
 }
 
-void displayLed(niveau, sondeState) {
+void displayLed(int niveau, String sondeState) {
 
   /*
       si sondeState == "ok" -> afficher les en fonction du parametre niveau
@@ -168,24 +161,25 @@ void displayLed(niveau, sondeState) {
       digitalWrite(ledPins[i], HIGH); // on allume la led correspondant a la valeur de i
     }
   }
- 
+
   else {
-     pinMode(ledPinR, OUTPUT);
+    pinMode(ledPinR, OUTPUT);
     pinMode(ledPinR2, OUTPUT);
     unsigned long millisActuel = millis();
 
-    if(millisActuel - previousMillis >= interval) {
+    if (millisActuel - previousMillis >= interval) {
       previousMillis = millisActuel;
     }
 
-    if(etatLed == LOW) {
-    etatLed = HIGH;
-  }
+    if (etatLed == LOW) {
+      etatLed = HIGH;
+    }
     else {
       etatLed = LOW;
     }
 
-    digitalWrite(ledPinR, ledPinR2, etatLed);
+    digitalWrite(ledPinR, etatLed);
+    digitalWrite(ledPinR2, etatLed);
   }
 }
 
@@ -205,7 +199,7 @@ void openGate() {
 }
 
 void closeGate() {
- 
+
   if (!isOpen) {
     Serial.println("clapet deja ferme");
   }
@@ -225,25 +219,25 @@ void closeGate() {
 // Remplacement placeholder avec valeur d'etat au travers des fonctions get()
 String processor(const String& var) {
   Serial.println(var);
-  if (var == "STATE") {
-    if (digitalRead(ledPin)) {
-      ledState = "ON";
-    }
-    else {
-      ledState = "OFF";
-    }
-    Serial.print(ledState);
-    return ledState;
-  }
-  else if (var == "TEMPERATURE") {
-    return getTemperature();
-  }
-  else if (var == "HUMIDITY") {
-    return getHumidity();
-  }
-  else if (var == "PRESSURE") {
-    return getPressure();
-  }
+//  if (var == "STATE") {
+//    if (digitalRead(ledPin)) {
+//      ledState = "ON";
+//    }
+//    else {
+//      ledState = "OFF";
+//    }
+//    Serial.print(ledState);
+//    return ledState;
+//  }
+//  else if (var == "TEMPERATURE") {
+//    return getTemperature();
+//  }
+//  else if (var == "HUMIDITY") {
+//    return getHumidity();
+//  }
+//  else if (var == "PRESSURE") {
+//    return getPressure();
+//  }
 }
 
 void setup() {
@@ -266,6 +260,8 @@ void setup() {
   // Print esp8266 Address IP locale
   Serial.println(WiFi.localIP());
 
+  // attache le servo motor au gpio D8
+  motor.attach(15);
 
   // Route pour root(racine du site web) / web page
   server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
@@ -277,25 +273,25 @@ void setup() {
     request->send(SPIFFS, "/style.css", "text/css");
   });
 
-  // exemple
-  // Route pour mettre GPIO led à HIGH
-  server.on("/on", HTTP_GET, [](AsyncWebServerRequest * request) {
-    digitalWrite(ledPin, HIGH);
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
+//  // exemple
+//  // Route pour mettre GPIO led à HIGH
+//  server.on("/on", HTTP_GET, [](AsyncWebServerRequest * request) {
+//    digitalWrite(ledPin, HIGH);
+//    request->send(SPIFFS, "/index.html", String(), false, processor);
+//  });
 
   //exemple
-  // Route pour mettre GPIO led à LOW
-  server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request) {
-    digitalWrite(ledPin, LOW);
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
-
-  //exemple
-  // Route pour afficher IP/temperature avec fonction getTemperature()
-  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send_P(200, "text/plain", getTemperature().c_str());
-  });
+//  // Route pour mettre GPIO led à LOW
+//  server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request) {
+//    digitalWrite(ledPin, LOW);
+//    request->send(SPIFFS, "/index.html", String(), false, processor);
+//  });
+//
+//  //exemple
+//  // Route pour afficher IP/temperature avec fonction getTemperature()
+//  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
+//    request->send_P(200, "text/plain", getTemperature().c_str());
+//  });
 
 
   // Start server
@@ -303,7 +299,7 @@ void setup() {
 
 }
 
- 
+
 void loop() {
   // put your main code here, to run repeatedly:
 
