@@ -253,7 +253,7 @@ String processor(const String& var) {
     return ledState;
   }
   else if (var == "LEVEL") {
-    return ;
+    return String(level);
   }
 }
 
@@ -317,6 +317,6 @@ void setup() {
 
 void loop() {
   // effectue une mesure toutes les 30 secondes -> const long intervalMesure
-  measureSonde()
+  measureSonde();
 
 }
