@@ -62,10 +62,10 @@ int niveau;
 float level;
 
 // valeur de la capacitance lorsque la cuve est vide Ɛ
-const float capEmpty = 38.82 * 10 * -3; // 38.82 est en picofarad donc on multiplie par 10^-3 pour le convertir en nanofarad
+const float capEmpty = 1.76 * 10^(-11); // cf calcul capacitance à vide
 
 // valeur de la capacitance lorsque la cuve est pleine
-const float capFull = 3.11; // la valeur est en nano farad
+const float capFull = 1.41 * 10^(-9); // cf calcul capacitance pleine 
 
 //valeur de la capacitance à l'instant ou l'on mesure
 float capInstant; // on définit capInstant en nombre décimal
@@ -130,7 +130,8 @@ void measureSonde() {
 
     capInstant = mesureSonde;
 
-    niveau = ((capInstant * 100) / capFull);    //transforme la capacitance en niveau en %
+    niveau = ((capInstant * 100) / capFull);//transforme la capacitance en niveau en %
+    level = niveau;
     niveau = int(niveau) + 1;                   // arrondie a l'entier sup
     niveau = (niveau * 6) / 100;               // on transforme le niveau en % en niveau compris entre 0 et 6
 
