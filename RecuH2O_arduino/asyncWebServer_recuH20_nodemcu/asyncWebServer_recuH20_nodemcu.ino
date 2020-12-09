@@ -131,11 +131,7 @@ void measureSonde() {
     capInstant = mesureSonde;
 
     niveau = ((capInstant * 100) / capFull);    //transforme la capacitance en niveau en %
-    niveau = int(niveau) + 1;
-    
-    
-
-// ATTENTION niveau est un INT il faudra faire un arrondie a l'entier superieur
+    niveau = int(niveau) + 1;                   // arrondie a l'entier sup
     niveau = (niveau * 6) / 100;               // on transforme le niveau en % en niveau compris entre 0 et 6
 
 
