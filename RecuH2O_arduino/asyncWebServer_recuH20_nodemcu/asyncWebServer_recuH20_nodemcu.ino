@@ -6,6 +6,7 @@
 #include <Servo.h>
 
 
+
 // à remplacer avec vos identifiants wifi
 const char* ssid = "Reseau Wi-Fi de mehdi";
 const char* password = "emyTourniquet1988";
@@ -17,23 +18,21 @@ const int ledCount = 6;
 
 // definition array led
 const int ledPins[] = {
-  D1, D2, D3, D5, D6, D7
+  D1, D2, D5, D6, D7
 };
 
-const int ledPinR = D1;
-const int ledPinR2 = D2;
-
+// definition led pin pour erreur sonde
+const int ledPinR = D6;
+const int ledPinR2 = D7;
 int etatLed = LOW;
-
 unsigned long previousMillis = 0;
-
 const long interval = 1000;
 
 
 
 #define analogPin A0 // on utilise le pin A0 pour mesurer la tension du condensateur
-#define chargePin 9  // on utilise le pin S2(9) pour charger le condensateur
-#define dischargePin 10  // on utilise le pin S3(10) pour décharger le condensateur
+#define chargePin 16  // on utilise le pin S2(9) pour charger le condensateur
+#define dischargePin 3  // on utilise le pin S3(10) pour décharger le condensateur
 #define resistorValue 10000.0F // on entre la valeur de la résistance que l'on utilise
 // le F permet de mettre la valeur de la résistance en float
 
@@ -62,10 +61,10 @@ int niveau;
 float level;
 
 // valeur de la capacitance lorsque la cuve est vide Ɛ
-const float capEmpty = 1.76 * 10^(-11); // cf calcul capacitance à vide
+const float capEmpty = 1.71 * pow(10,-11); // cf calcul capacitance à vide
 
 // valeur de la capacitance lorsque la cuve est pleine
-const float capFull = 1.41 * 10^(-9); // cf calcul capacitance pleine 
+const float capFull = 1.41 * pow(10,-9); // cf calcul capacitance pleine 
 
 //valeur de la capacitance à l'instant ou l'on mesure
 float capInstant; // on définit capInstant en nombre décimal
