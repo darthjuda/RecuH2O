@@ -62,6 +62,80 @@ AsyncWebServer server(80);
 // création de l'objet moteur
 Servo motor;
 
+void setup() {
+  // Port serie pour debugging
+  Serial.begin(115200);
+
+  // Initialize SPIFFS
+  if (!SPIFFS.begin()) {
+    Serial.println("une erreur s'est produite à l'initialisation du SPIFFS");
+    return;
+  }
+
+  // Initialize LCD
+  lcd.begin();  // initialisation du lcd
+  lcd.backlight(); // Allumage du retroeclairage
+  lcd.setCursor(0, 0);
+
+  lcd.print("Recu H2O\n");
+  lcd.setCursor(0, 1);
+  lcd.print("Bienvenue\n");
+
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println("Connexion au WiFi..");
+  }
+
+  // Print esp8266 Address IP locale
+  Serial.println("Addresse IP:");
+  Serial.println(WiFi.localIP());
+
+  // attache le servo motor au gpio D4
+  motor.attach(D4);
+
+  // Route pour root(racine du site web) / web page
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+    Serial.println("Serveur: -> /");
+  });
+
+  // Route pour charger fichiers style.css
+  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/style.css", "text/css");
+    Serial.println("Serveur: -> /styles.css");
+  });
+
+  // Route pour ouvrir le clapet
+  server.on("/opengate", HTTP_GET, [](AsyncWebServerRequest * request) {
+    openGate();
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
+
+  // Route pour fermer le clapet
+  server.on("/closegate", HTTP_GET, [](AsyncWebServerRequest * request) {
+    closeGate();
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
+
+  //  //exemple
+  //  // Route pour afficher IP/temperature avec fonction getTemperature()
+  //  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
+  //    request->send_P(200, "text/plain", getTemperature().c_str());
+  //  });
+
+
+  // Start server
+  server.begin();
+  Serial.println("Serveur: ON");
+
+}
+
+
+
+
 // exemple fonction
 //String getPressure() {
 //  float pressure = bme.readPressure() / 100.0F;
@@ -78,7 +152,7 @@ void measureSonde() {
 
   while (analogRead (analogPin) < 648) {
     // Attendre que le condensateur est atteint 63,2% de sa charge: t = R*C
-
+    delay(0);
   }
 
   elapsedTime = millis() - startTime;  // Déterminer le temps de chargement
@@ -103,7 +177,7 @@ void measureSonde() {
   digitalWrite(dischargePin, LOW);  // Permet au condensateur de se décharger
 
   while (analogRead(analogPin) > 0) {
-    
+    delay(0);
     // Ne rien faire tant que le condensateur n'est pas déchargé
   }
 
@@ -128,7 +202,7 @@ void measureSonde() {
 
     while (analogRead(analogPin) < 648) {
       // Attendre que le condensateur est atteint 63,2% de sa charge: t = R*C
-      
+      delay(0);
     }
 
     elapsedTime = millis() - startTime;
@@ -153,7 +227,7 @@ void measureSonde() {
 
     while (analogRead(analogPin) > 0) {
       // Ne rien faire tant que le condensateur n'est pas déchargé
-      
+      delay(0);
     }
 
     U = analogRead(analogPin);
@@ -224,7 +298,7 @@ void measureSonde() {
 void openGate() {
 
   if (isOpen) {
-    lcd.println("clapet deja ouvert!");
+    Serial.println("clapet deja ouvert!");
   }
   else {
     for (int pos = 90; pos >= 0; pos--) { // on passe de la position 90 a 0 en décrémentant de 1 pas a chaque tour de la boucle
@@ -232,14 +306,14 @@ void openGate() {
       delay(15);// on attend 15 ms pour laisser le temps au moteur de se mettre en position
     }
     isOpen = true;
-    lcd.println("ouverture clapet");
+    Serial.println("ouverture clapet");
   }
 }
 
 void closeGate() {
 
   if (!isOpen) {
-    lcd.println("clapet deja ferme!");
+    Serial.println("clapet deja ferme!");
   }
   else {
     for (int pos = 0; pos <= 90; pos++) { // on passe de la position 0 a 90 en incrémentant de 1 pas a chaque tour de la boucle
@@ -247,7 +321,7 @@ void closeGate() {
       delay(15); // on attend 15 ms pour laisser le temps au moteur de se mettre en position
     }
     isOpen = false;
-    lcd.println("fermeture clapet");
+    Serial.println("fermeture clapet");
   }
 }
 
@@ -277,76 +351,6 @@ String processor(const String& var) {
   }
 }
 
-void setup() {
-  // Port serie pour debugging
-  Serial.begin(115200);
-
-  // Initialize SPIFFS
-  if (!SPIFFS.begin()) {
-    Serial.println("une erreur s'est produite à l'initialisation du SPIFFS");
-    return;
-  }
-
-  // Initialize LCD
-  lcd.begin();  // initialisation du lcd
-  lcd.backlight(); // Allumage du retroeclairage
-  lcd.setCursor(0, 0);
-
-  lcd.print("Recu H2O\n");
-  lcd.setCursor(0, 1);
-  lcd.print("Bienvenue\n");
-
-
-  // Connect to Wi-Fi
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    lcd.println("Connexion au WiFi..");
-  }
-
-  // Print esp8266 Address IP locale
-  lcd.println("Addresse IP:");
-  lcd.println(WiFi.localIP());
-
-  // attache le servo motor au gpio D4
-  motor.attach(D4);
-
-  // Route pour root(racine du site web) / web page
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-    lcd.println("Serveur: -> /");
-  });
-
-  // Route pour charger fichiers style.css
-  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(SPIFFS, "/style.css", "text/css");
-    lcd.println("Serveur: -> /styles.css");
-  });
-
-  // Route pour ouvrir le clapet
-  server.on("/opengate", HTTP_GET, [](AsyncWebServerRequest * request) {
-    openGate();
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
-
-  // Route pour fermer le clapet
-  server.on("/closegate", HTTP_GET, [](AsyncWebServerRequest * request) {
-    closeGate();
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
-
-  //  //exemple
-  //  // Route pour afficher IP/temperature avec fonction getTemperature()
-  //  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
-  //    request->send_P(200, "text/plain", getTemperature().c_str());
-  //  });
-
-
-  // Start server
-  server.begin();
-  lcd.println("Serveur: ON");
-
-}
 
 
 void loop() {
