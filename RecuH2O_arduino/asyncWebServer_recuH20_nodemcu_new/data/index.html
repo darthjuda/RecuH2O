@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+Loïc Muller & Mehdi Jung
+Complete project details at https://github.com/darthjuda/RecuH2O
+-->
+<html>
+    <head>
+        <title>Recu H2O</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="icon" href="data:,">
+            <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <h1>Recu H2O Web Server</h1>
+
+        <p>Etat de la sonde:<strong> %STATESONDE%</strong></p>
+        <br>
+        <p>Etat du moteur:<strong> %STATEMOTOR%</strong></p>
+        <p>Ouverture du clapet:<strong> %STATECLAPET%</strong></p>
+        <p>
+            <a href="/opengate"><button class="button">Ouvert</button></a>
+            <a href="/closegate"><button class="button button2">Fermé</button></a>
+        </p>
+        <br>
+        <p>Etat des Leds:<strong> %STATELEDS%</strong></p>
+        <br>
+        <p>
+            <span class="sensor-labels">Niveau Cuve</span>
+            <span id="humidity">%LEVEL%</span>
+            <sup class="units">%</sup>
+        </p>
+    </body>
+    <script>
+        setInterval(function ( ) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("temperature").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/temperature", true);
+            xhttp.send();
+        }, 10000 ) ;
+
+        setInterval(function ( ) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("humidity").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/humidity", true);
+            xhttp.send();
+        }, 10000 ) ;
+
+        setInterval(function ( ) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("pressure").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/pressure", true);
+            xhttp.send();
+        }, 10000 ) ;
+    </script>
+</html>
